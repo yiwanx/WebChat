@@ -1,26 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Chat from './components/Chat'
+import Create from "./components/Create";
+import Join from "./components/Join";
+import { BrowserRouter, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <BrowserRouter>
+      <Route exact path="/" component={Create}/>
+      <Route path="/chat" component={Chat}/>
+      <Route path="/join" component={Join}/>
+    </BrowserRouter>
+)
 
 export default App;
