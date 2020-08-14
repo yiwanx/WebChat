@@ -6,11 +6,15 @@ import '../App.css'
 const Create = () => {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
-    const handleNameChange = event => setName(event.target.value)
+
+    const handleNameChange = event => {
+        event.preventDefault()
+        setName(event.target.value)
+    }
     useEffect(() => {
         const roomName = uuidv4();
         setRoom(roomName)
-    }, [])
+    },[])
 
     return (
         <div className="container">
