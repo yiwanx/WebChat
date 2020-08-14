@@ -1,25 +1,32 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import '../../App.css'
+import {v4 as uuidv4} from 'uuid'
+import '../App.css'
+
 const Create = () => {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
     const handleNameChange = event => setName(event.target.value)
-    const handleRoomChange = event => setRoom(event.target.value)
+    useEffect(() => {
+        const roomName = uuidv4();
+        setRoom(roomName)
+    }, [])
+
     return (
         <div className="container">
-            <div className="form">
-            <h1>Sign in (Create new Room)</h1>
-            <div>
-                <input placeholder="Name"
-                value={name}
-                onChange={handleNameChange}
-            />
-            </div>
-            <Link onClick={event => (!room || !name) ? event.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
-                <button type="submit" text="Sign in">Sign In</button>
-            </Link>
-            </div>
+            <form>
+                <h1>Sign in (Create new Room)</h1>
+                <div className="form-input">
+                    <input placeholder="Name"
+                           value={name}
+                           onChange={handleNameChange}
+                    />
+                </div>
+                <Link onClick={event => (!room || !name) ? event.preventDefault() : null}
+                      to={`/chat?name=${name}&room=${room}`}>
+                    <button type="submit" text="Sign in" className="btn">Sign In</button>
+                </Link>
+            </form>
         </div>
     )
 }
