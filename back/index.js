@@ -15,6 +15,7 @@ io.on('connection', (socket) => {
         socket.broadcast.to(user.room).emit('message',{user: "admin", text: `${user.name} has just joined WebChat`})
 
         socket.join(user.room)
+        console.log('user', user.name, user.room)
         callback()
     })
     socket.on('sendMessage',(message,callback) => {
@@ -25,7 +26,10 @@ io.on('connection', (socket) => {
         callback()
     })
     socket.on('disconnect', () => {
-        console.log('User has left')
+        const user = removeUser(socket.id)
+        if(user) {
+            io.to(user.room).emit('message', {user: 'admin', text: `${user.name} has left`})
+        }
     });
 });
 app.get('/', (req, res) => {

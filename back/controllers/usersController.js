@@ -13,7 +13,7 @@ const addUser = ({id, name, room}) => {
 const removeUser = id => {
     const index = users.findIndex(user => user.id === id)
     if (index !== -1) {
-        return users.slice(index, index + 1)[0]
+        return users.splice(index, 1)[0]
     }
 }
 const getUser = id => users.find(user => user.id === id)

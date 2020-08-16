@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {v4 as uuidv4} from 'uuid'
-import '../App.css'
 
 const Create = () => {
     const [name, setName] = useState('')
@@ -18,7 +17,7 @@ const Create = () => {
 
     return (
         <div className="container">
-            <form>
+            <form className='create-form'>
                 <h1>Sign in (Create new Room)</h1>
                 <div className="form-input">
                     <input placeholder="Name"
