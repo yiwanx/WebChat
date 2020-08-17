@@ -197,11 +197,7 @@ h1 {
 .active-container img {
     padding-left: 10px;
 }
-video {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
+
 @media (min-width: 320px) and (max-width: 768px) {
     .container {
         height: 100%;
