@@ -4,6 +4,7 @@ import queryString from 'query-string'
 import Info from './Info'
 import Input from "./Input";
 import Messages from './Messages'
+import Users from './Users'
 let socket;
 
 const Chat = ({location}) => {
@@ -13,25 +14,24 @@ const Chat = ({location}) => {
     const [users, setUsers] = useState([])
     const [message, setMessage] = useState('')
     const URL = 'localhost:4000'
-
-
-
+    let dependency = location.hostname ? location.search:URL
 
     useEffect(() => {
         const {name, room} = queryString.parse(location.search)
         socket = io(URL)
         setName(name)
         setRoom(room)
-        console.log('effect1')
+
         socket.emit('join', {name, room},(error) => {
             if(error) {
                 alert(error)
             }
         })
-    }, [URL, location.search])
+
+    }, [dependency, location.search])
 
     useEffect(() => {
-        console.log('effect2')
+
         socket.on('message', message => {
             setMessages(messages => [...messages, message])
         })
@@ -45,7 +45,7 @@ const Chat = ({location}) => {
             socket.emit('sendMessage', message, () => setMessage(''))
         }
     }
-    console.log(users)
+
     return (
         <div className='container'>
             <div className='chat-container'>
@@ -53,6 +53,7 @@ const Chat = ({location}) => {
             <Messages messages={messages} name={name}/>
             <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
             </div>
+            <Users users={users}/>
         </div>
     )
 }

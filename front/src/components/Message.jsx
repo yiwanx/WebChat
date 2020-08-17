@@ -1,6 +1,18 @@
 import React from "react";
 
-const Message = ({message: {user,text}, name}) => {
+const Message = ({message: {user,text,time}, name}) => {
+    const styleTime = {
+
+        current: {
+            marginRight: 20,
+            color: '#4e009c',
+
+        },
+        other: {
+            marginLeft: 20,
+            color: '#4e009c',
+        }
+    }
     let isSentByCurrent = false
     const lowerCasedName = name.toLowerCase()
     if (user === lowerCasedName) {
@@ -10,6 +22,7 @@ const Message = ({message: {user,text}, name}) => {
         isSentByCurrent ?
             (
                 <div className='message-container message-container__current-user'>
+                    <p style={styleTime.current}>{time}</p>
                     <p className='sent-text sent-text__current-user'>{user}</p>
                     <div className='message-box message-box__current-user'>
                         <p className='message-text message-text__current-user'>{text}</p>
@@ -22,8 +35,10 @@ const Message = ({message: {user,text}, name}) => {
 
                     <div className='message-box message-box__other-user'>
                         <p className='message-text message-text__other-user'>{text}</p>
+
                     </div>
                     <p className='sent-text sent-text__other-user'>{user}</p>
+                    <p style={styleTime.other}>{time}</p>
                 </div>)
     )
 }

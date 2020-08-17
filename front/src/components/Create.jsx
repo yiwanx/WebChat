@@ -11,7 +11,7 @@ const Create = () => {
     },[])
 
     return (
-        <div className="container">
+        <div className="create-container">
             <form className='create-form'>
                 <h1>Sign in (Create new Room)</h1>
                 <div className="form-input">

@@ -4,10 +4,17 @@
     color: black;
     align-items: center;
     text-align: center;
-    min-height: 100vh;
-    flex-direction: column;
+    height: 100vh;
 }
 /*Create.jsx Sign IN form*/
+.create-container {
+    display: flex;
+    justify-content: center;
+    color: black;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -78,26 +85,11 @@ button.btn {
     justify-content: space-between;
     background: #FFFFFF;
     border-radius: 8px;
-    height: 60%;
+    height: 75%;
     width: 35%;
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
-    .container {
-        height: 100%;
-    }
 
-    .chat-container {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-@media (min-width: 480px) and (max-width: 1200px) {
-    .chat-container {
-        width: 60%;
-    }
-}
 /*Input.jsx*/
 .message-form {
     flex-direction: row;
@@ -179,4 +171,57 @@ button.btn {
 }
 .sent-text__current-user{
     padding-right: 20px;
+}
+.users-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    color: #000000;
+    height: 60%;
+    justify-content: space-around;
+    background: #ffbefe;
+}
+.active-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50%;
+
+}
+h1 {
+    margin: 0;
+}
+.active-item {
+    display: flex;
+    align-items: center;
+}
+.active-container img {
+    padding-left: 10px;
+}
+video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+@media (min-width: 320px) and (max-width: 768px) {
+    .container {
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chat-container {
+        width: 100%;
+        height: 70vh;
+    }
+    .users-container {
+        height: auto;
+        margin: 0;
+    }
+}
+
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    .chat-container {
+        width: 60%;
+    }
 }
