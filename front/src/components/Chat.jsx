@@ -10,6 +10,7 @@ const Chat = ({location}) => {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
     const [messages, setMessages] = useState([])
+    const [users, setUsers] = useState([])
     const [message, setMessage] = useState('')
     const URL = 'localhost:4000'
 
@@ -21,7 +22,7 @@ const Chat = ({location}) => {
         socket = io(URL)
         setName(name)
         setRoom(room)
-
+        console.log('effect1')
         socket.emit('join', {name, room},(error) => {
             if(error) {
                 alert(error)
@@ -30,16 +31,21 @@ const Chat = ({location}) => {
     }, [URL, location.search])
 
     useEffect(() => {
+        console.log('effect2')
         socket.on('message', message => {
-            setMessages([...messages, message])
+            setMessages(messages => [...messages, message])
         })
-    })
+        socket.on('roomData', users => {
+            setUsers(users)
+        })
+    },[])
     const sendMessage = event => {
         event.preventDefault()
         if (message) {
             socket.emit('sendMessage', message, () => setMessage(''))
         }
     }
+    console.log(users)
     return (
         <div className='container'>
             <div className='chat-container'>
@@ -50,4 +56,5 @@ const Chat = ({location}) => {
         </div>
     )
 }
+
 export default Chat

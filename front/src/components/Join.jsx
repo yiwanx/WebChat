@@ -1,19 +1,15 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import queryString from 'query-string'
 
-const Join = () => {
+
+const Join = ({match}) => {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
 
-    const handleNameChange = event => {
-        event.preventDefault()
-        setName(event.target.value)
-    }
     useEffect(() => {
-        const roomName = 'sdf'
-        setRoom(roomName)
-    },[])
+        const room = match.params.room
+        setRoom(room)
+    },[match.params.room])
 
     return (
         <div className="container">
@@ -22,12 +18,12 @@ const Join = () => {
                 <div className="form-input">
                     <input placeholder="Name"
                            value={name}
-                           onChange={handleNameChange}
+                           onChange={(event) => setName(event.target.value)}
                     />
                 </div>
                 <Link onClick={event => (!room || !name) ? event.preventDefault() : null}
-                      to={`/chat?name=${name}&room=${room}`}>
-                    <button type="submit" text="Sign in" className="btn">Sign In</button>
+                      to={`/chat?name=${name}${room}`}>
+                    <button type="submit" className="btn">Sign In</button>
                 </Link>
             </form>
         </div>

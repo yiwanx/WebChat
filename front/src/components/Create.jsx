@@ -6,13 +6,8 @@ const Create = () => {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
 
-    const handleNameChange = event => {
-        event.preventDefault()
-        setName(event.target.value)
-    }
     useEffect(() => {
-        const roomName = uuidv4();
-        setRoom(roomName)
+        setRoom(uuidv4())
     },[])
 
     return (
@@ -22,7 +17,7 @@ const Create = () => {
                 <div className="form-input">
                     <input placeholder="Name"
                            value={name}
-                           onChange={handleNameChange}
+                           onChange={(event) => setName(event.target.value)}
                     />
                 </div>
                 <Link onClick={event => (!room || !name) ? event.preventDefault() : null}

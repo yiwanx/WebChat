@@ -4,7 +4,7 @@ const addUser = ({id, name, room}) => {
     name = name.toLowerCase()
     const userNameIsTaken = users.find(user => user.room === room && user.name === name)
     if (userNameIsTaken) {
-        return {error: 'The username is taken'}
+        return {error: 'The username is taken. Go back and choose another username.'}
     }
     const user = {id, name, room}
     users.push(user)

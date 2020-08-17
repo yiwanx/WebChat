@@ -9,7 +9,7 @@ const App = () => (
     <BrowserRouter>
         <Route exact path="/" component={Create}/>
         <Route path="/chat" component={Chat}/>
-        <Route path="/join" component={Join}/>
+        <Route path="/join:room" component={Join}/>
     </BrowserRouter>
 )
 

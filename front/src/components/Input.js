@@ -2,7 +2,14 @@ import React from 'react';
 
 
 const Input = ({ setMessage, sendMessage, message }) => {
+    const onChange = event => {
+        event.preventDefault()
+        setMessage(event.target.value)
+    }
+    const onKeyPress = event => {
 
+        return event.key === 'Enter' ? sendMessage(event) : null
+    }
     return (
 
         <form className="message-form">
@@ -11,8 +18,8 @@ const Input = ({ setMessage, sendMessage, message }) => {
                 type="text"
                 placeholder="Type a message..."
                 value={message}
-                onChange={event => setMessage(event.target.value)}
-                onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
+                onChange={onChange}
+                onKeyPress={onKeyPress}
             />
             <button className="send-button" onClick={event => sendMessage(event)}>Send</button>
         </form>
